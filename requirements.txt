@@ -1,13 +1,4 @@
-# Minimal dependencies for Speech Sentiment Analyzer
 streamlit==1.39.0
-speechrecognition==3.10.4
+openai-whisper==20231117
 nltk==3.9.1
-pydub==0.25.1
-
-# Streamlit compatibility
-rich==13.9.2
-markdown-it-py==3.0.0
-pygments==2.18.0
-
-# Optional: ensure modern pip resolver
-pip>=25.0
+torch
