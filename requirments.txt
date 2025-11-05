@@ -1,6 +1,6 @@
 # Minimal dependencies for Speech Sentiment Analyzer
 streamlit==1.39.0
-speechrecognition==3.10.4
+SpeechRecognition==3.10.4
 nltk==3.9.1
 pydub==0.25.1
 
@@ -11,3 +11,4 @@ pygments==2.18.0
 
 # Optional: ensure modern pip resolver
 pip>=25.0
+
