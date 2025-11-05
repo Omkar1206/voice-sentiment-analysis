@@ -13,7 +13,26 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 import tempfile
 import os
+
+
+# --------------------------------------------------------------------
+# Temporary patch for Streamlit Cloud runtimes that lack 'aifc' module
+# --------------------------------------------------------------------
+import sys, types
+
+if "aifc" not in sys.modules:
+    fake_aifc = types.ModuleType("aifc")
+    def _fake_open(*args, **kwargs):
+        raise NotImplementedError(
+            "The aifc module is unavailable in this environment. "
+            "Use WAV audio files instead of AIFF."
+        )
+    fake_aifc.open = _fake_open
+    sys.modules["aifc"] = fake_aifc
+# --------------------------------------------------------------------
+
 import speech_recognition as sr
+
 # Download VADER lexicon if not already
 nltk.download('vader_lexicon', quiet=True)
 
