@@ -1,4 +1,7 @@
 streamlit==1.39.0
-faster-whisper==1.0.3
+whisper-timestamped==1.14.1
 nltk==3.9.1
 torch>=2.0
+rich==13.9.2
+markdown-it-py==3.0.0
+pygments==2.18.0
