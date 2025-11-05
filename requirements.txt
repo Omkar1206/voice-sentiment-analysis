@@ -1,4 +1,4 @@
 streamlit==1.39.0
 openai-whisper==20231117
 nltk==3.9.1
-torch
+torch>=2.0
