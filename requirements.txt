@@ -1,10 +1,4 @@
-# Fix for Streamlit dependency resolver
 streamlit==1.39.0
-openai-whisper==20231117
+faster-whisper==1.0.3
 nltk==3.9.1
 torch>=2.0
-
-# Pin compatible dependencies (Streamlit Cloud tries to auto-upgrade these)
-rich==13.9.2
-markdown-it-py==3.0.0
-pygments==2.18.0
