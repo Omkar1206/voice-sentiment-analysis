@@ -307,7 +307,7 @@ requests-file==1.5.1
 requests-toolbelt==1.0.0
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
-rich==13.3.5
+rich==13.9.2
 rope==1.12.0
 rpds-py==0.10.6
 Rtree==1.0.1
@@ -411,3 +411,4 @@ zict==3.0.0
 zipp==3.17.0
 zope.interface==5.4.0
 zstandard==0.22.0
+
