@@ -1,20 +1,18 @@
 import streamlit as st
-from faster_whisper import WhisperModel
+import whisper_timestamped as whisper
 import tempfile, os, nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 nltk.download("vader_lexicon", quiet=True)
 
 st.title("Speech Sentiment Analyzer")
-st.write("Upload an audio file; the app will transcribe it and analyze the sentiment.")
+st.write("Upload a WAV or MP3 file to transcribe and analyze sentiment.")
 
 @st.cache_resource
 def load_model():
-    return WhisperModel("base", device="cpu")
+    return whisper.load_model("base", device="cpu")
 
 model = load_model()
-
-file = st.file_uploader("Upload audio", type=["wav", "mp3", "m4a"])
 
 def map_emotion(score):
     if score >= 0.70: return "Very Happy"
@@ -24,15 +22,16 @@ def map_emotion(score):
     elif score > -0.70: return "Very Sad"
     else: return "Angry"
 
+file = st.file_uploader("Upload audio", type=["wav", "mp3"])
 if file:
     st.audio(file)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
         tmp.write(file.read())
         path = tmp.name
 
-    st.write("Transcribing...")
-    segments, _ = model.transcribe(path)
-    text = " ".join([s.text for s in segments])
+    st.write("Transcribing…")
+    result = whisper.transcribe(model, path)
+    text = result["text"]
     os.remove(path)
 
     st.subheader("Transcribed Text")
@@ -41,9 +40,8 @@ if file:
     sia = SentimentIntensityAnalyzer()
     scores = sia.polarity_scores(text)
     emotion = map_emotion(scores["compound"])
-
     st.subheader("Detected Emotion")
-    st.write(f"{emotion} (compound={scores['compound']})")
+    st.write(f"{emotion}  (compound={scores['compound']})")
     st.json(scores)
 else:
     st.info("Please upload an audio file to begin.")
