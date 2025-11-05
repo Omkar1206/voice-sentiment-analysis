@@ -18,7 +18,7 @@ import os
 nltk.download('vader_lexicon', quiet=True)
 
 # Title and description
-st.title("🎙️ Speech Sentiment Analysis App")
+st.title("Speech Sentiment Analysis App")
 st.write("Upload an audio file (WAV format), and the app will transcribe it to text and analyze its sentiment.")
 
 # File uploader
@@ -50,7 +50,7 @@ if audio_file is not None:
         tmp_path = tmp_file.name
 
     # Step 2: Convert speech to text
-    st.write("🔊 **Step 1:** Converting audio to text...")
+    st.write("**Step 1:** Converting audio to text...")
     recognizer = sr.Recognizer()
 
     try:
@@ -58,7 +58,7 @@ if audio_file is not None:
             audio_data = recognizer.record(source)
         text = recognizer.recognize_google(audio_data)
         st.success("✅ Transcription Successful!")
-        st.subheader("📝 Transcribed Text")
+        st.subheader("Transcribed Text")
         st.write(text)
     except Exception as e:
         st.error(f"Error reading audio file: {e}")
@@ -66,19 +66,19 @@ if audio_file is not None:
         st.stop()
 
     # Step 3: Perform sentiment detection using VADER
-    st.write("🧠 **Step 2:** Detecting sentiment using VADER...")
+    st.write("**Step 2:** Detecting sentiment using VADER...")
     sia = SentimentIntensityAnalyzer()
     sentiment_result = sia.polarity_scores(text)
     compound_score = sentiment_result['compound']
 
     # Step 4: Map compound score to emotion
     emotion_label = map_emotion(compound_score)
-    st.subheader("🎭 Detected Sentiment")
+    st.subheader("Detected Sentiment")
     st.write(f"**Emotion:** {emotion_label}")
     st.write(f"**Compound Score:** {compound_score}")
 
     # Optional: Show sentiment breakdown
-    st.write("📊 Sentiment Breakdown")
+    st.write("Sentiment Breakdown")
     st.json(sentiment_result)
 
     # Cleanup temporary file
