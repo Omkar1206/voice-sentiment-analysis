@@ -1,19 +1,10 @@
-# Force correct dependencies for Streamlit Cloud
-
-# Update pip first to avoid resolver bugs
 pip>=25.0
-
-# Core libraries
 streamlit==1.39.0
 SpeechRecognition==3.10.4
 nltk==3.9.1
 pydub==0.25.1
-
-# Compatibility dependencies
 rich==13.9.2
 markdown-it-py==3.0.0
 pygments==2.18.0
-
-# Ensure setuptools and wheel are available (fixes build issues)
 setuptools>=69.0.0
 wheel>=0.43.0
