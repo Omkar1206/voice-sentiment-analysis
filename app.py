@@ -8,12 +8,12 @@
 # SPEECH ANALYTICS PROJECT - Streamlit Sentiment Detection App
 # ---------------------------------------------------------
 import streamlit as st
-import speech_recognition as sr
+
 from nltk.sentiment import SentimentIntensityAnalyzer
 import nltk
 import tempfile
 import os
-
+import speech_recognition as sr
 # Download VADER lexicon if not already
 nltk.download('vader_lexicon', quiet=True)
 
