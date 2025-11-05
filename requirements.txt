@@ -1,4 +1,0 @@
-streamlit==1.39.0
-speechrecognition==3.10.4
-nltk==3.9.1
-pydub==0.25.1
